@@ -11,6 +11,7 @@ const Styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         paddingTop: 10,
+        zIndex: 9,
     },
     title: {
         color: '#000',
