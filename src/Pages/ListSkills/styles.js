@@ -1,31 +1,50 @@
 import { StyleSheet } from 'react-native';
+import Color from '../../DesignPatterns/colors'
+import Fonts from '../../DesignPatterns/fonts'
 
 const Styles = StyleSheet.create({
     container: {
         display: 'flex',
         flex: 1,
-        backgroundColor: '#f0f0f0',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         height: '100%',
         width: '100%',
-        paddingTop: 10,
-        zIndex: 9,
+       
+        paddingHorizontal: 5,
     },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      list: {
+        width: "100%",
+        display: 'flex',
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        paddingVertical: 10,
+      },
     title: {
-        color: '#000',
-        fontSize: 16,
+        color: Color.Fonts.Primary,
+        fontSize: 20,
         textTransform: 'uppercase',
+        marginBottom: 10,
+        fontFamily: Fonts.Primary.BOLD,
+        textAlign: 'center'
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: Color.Backgrounds.Primary,
         paddingVertical: 10,
-        paddingHorizontal: 50,
-        margin: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        margin: 5,
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 3,
+        borderColor: "#ED7C03",
+        borderRadius: 10,
+        width: '47%',
     },
     dice: {
         width: 32,
@@ -33,6 +52,14 @@ const Styles = StyleSheet.create({
         fontSize: 15,
         textAlign: "center",
         paddingTop: 5,
+    },
+    tecImage: {
+        width: "90%",
+        height: 120,
+        resizeMode: "cover",
+        borderColor: Color.Backgrounds.Primary,
+        borderRadius: 20,
+        borderWidth: 3
     }
 });
 

@@ -1,17 +1,107 @@
-import { Modal, Text, Pressable, View } from "react-native";
+import { Modal, Text, View, TextInput, Pressable } from "react-native";
+import { useState } from "react";
+import { FontAwesome5 } from "@expo/vector-icons";
+import Colors from "../../DesignPatterns/colors";
 
+import { Play } from "../../components/skill";
 import Styles from "./styles";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const ModalCustom = ({ show, handleClose, diceValue }) => {
+const ModalCustom = ({ show, handleClose, tecnica }) => {
+  const [atribute, setAtribute] = useState(0);
+  const [numDice, setNumDice] = useState(1);
+  const [bonus, setBonus] = useState(0);
+  const [total, setTotal] = useState();
+  const [dices, setDices] = useState();
+
+  const roll = () => {
+    let { total, dices } = Play(
+      parseInt(atribute),
+      parseInt(numDice),
+      parseInt(bonus)
+    );
+    setTotal(total);
+    setDices(dices);
+  };
+
+  const close = () => {
+    setTotal(undefined);
+    setDices(undefined);
+    handleClose(!show);
+    setAtribute(0);
+    setNumDice(1);
+    setBonus(0);
+  };
+
   return (
-    <View style={show ? Styles.centeredView : { display: "none" }}>
+    <View
+      style={show ? Styles.centeredView : { display: "none" }}
+      onTouchStart={close}
+    >
       <Modal animationType="fade" transparent={true} visible={show}>
         <View style={Styles.centeredView}>
-          <View style={Styles.modalView}>
-            <Text style={Styles.modalText}>Resultado: {diceValue}</Text>
+          <View
+            style={Styles.modalView}
+            onTouchStart={(e) => e.stopPropagation()}
+          >
+            <Text style={Styles.modalText}>{tecnica}</Text>
+            {!total && (
+              <View style={Styles.inputContainer}>
+                <View style={Styles.inputContainerItem}>
+                  <Text style={Styles.textInput}>Atributo</Text>
+                  <TextInput
+                    onChangeText={setAtribute}
+                    keyboardType="number-pad"
+                    style={Styles.input}
+                  />
+                </View>
+                <View style={Styles.inputContainerItem}>
+                  <Text style={Styles.textInput}>Dados</Text>
+                  <TextInput
+                    onChangeText={setNumDice}
+                    keyboardType="number-pad"
+                    style={Styles.input}
+                  />
+                </View>
+                <View style={Styles.inputContainerItem}>
+                  <Text style={Styles.textInput}>Bonus</Text>
+                  <TextInput
+                    onChangeText={setBonus}
+                    keyboardType="number-pad"
+                    style={Styles.input}
+                  />
+                </View>
+              </View>
+            )}
+            <Pressable style={Styles.rollButton} onPress={roll}>
+              <FontAwesome5
+                style={{ elevation: 2 }}
+                name="dice"
+                size={50}
+                color={Colors.Backgrounds.White}
+              />
+            </Pressable>
+            {total && (atribute > 0 || bonus > 0) && (
+              <View style={Styles.diceContainer}>
+                <Text style={Styles.modalText}>Resultado</Text>
+                <Text style={Styles.resultText}>{total}</Text>
+              </View>
+            )}
+            {dices && (
+              <View style={Styles.diceContainer}>
+                <Text style={Styles.modalText}>Dados</Text>
+                <View style={Styles.diceView}>
+                  {dices.map((dice, index) => (
+                    <Text key={index} style={Styles.singleDice}>
+                      {dice}
+                    </Text>
+                  ))}
+                </View>
+              </View>
+            )}
             <Pressable
               style={[Styles.button, Styles.buttonClose]}
-              onPress={() => handleClose(!show)}
+              onPress={close}
             >
               <Text style={Styles.textStyle}>Fechar</Text>
             </Pressable>

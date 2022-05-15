@@ -1,21 +1,31 @@
 import { StyleSheet } from 'react-native';
+import Fonts from '../../DesignPatterns/fonts';
+import Color from '../../DesignPatterns/colors';
 
 const HeaderStyles = StyleSheet.create({
     container: {
-        padding: 24,
-        backgroundColor: '#7d5aa3',
-        borderBottomWidth: 1,
-        borderColor: '#dde3f0',
-        paddingTop: 44,
+        width: "115%",
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        alignSelf: 'center',
+        borderBottomWidth: 3,
+        borderColor: "#ED7C03"
     },
     title: {
-        color: '#fff',
-        fontSize: 20,
-        textTransform: 'uppercase',
-    }
+        color: Color.Fonts.Primary,
+        fontSize: 30,
+        textTransform: 'capitalize',
+        fontFamily: Fonts.Primary.BOLD,
+        marginHorizontal: "13%",
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 70,
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
 });
 
 export default HeaderStyles;

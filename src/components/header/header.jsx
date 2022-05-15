@@ -1,11 +1,13 @@
-import { Text, View } from "react-native";
+import { Text, View, ImageBackground } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import HeaderStyles from "./style";
+import Image from  '../../../assets/pergaminho-naruto.png'
+import Color from '../../DesignPatterns/colors';
 
-export default Header = ({ title, showX = true, showArrow = true }) => {
+export default Header = ({ title, showX, showArrow }) => {
   const navigation = useNavigation();
 
   function handlerGoToAppHomepage() {
@@ -14,9 +16,10 @@ export default Header = ({ title, showX = true, showArrow = true }) => {
 
   return (
     <View style={HeaderStyles.container}>
+      <ImageBackground source={Image} style={HeaderStyles.image}>
       {showArrow ? (
         <BorderlessButton onPress={navigation.goBack}>
-          <Feather name="arrow-left" size={24} color="#15b6d6"></Feather>
+          <Feather name="arrow-left" size={24} color={Color.Fonts.Primary}></Feather>
         </BorderlessButton>
       ) : (
         <View />
@@ -25,11 +28,12 @@ export default Header = ({ title, showX = true, showArrow = true }) => {
 
       {showX ? (
         <BorderlessButton onPress={handlerGoToAppHomepage}>
-          <Feather name="x" size={24} color="#ff669d"></Feather>
+          <Feather name="x" size={24} color={Color.Fonts.Primary}></Feather>
         </BorderlessButton>
       ) : (
         <View />
       )}
+    </ImageBackground>
     </View>
   );
 };

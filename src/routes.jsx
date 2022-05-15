@@ -16,7 +16,7 @@ export const Routes = () => (
       <Screen
         options={{
           headerShown: true,
-          header: () => <Header title="Skills" showX={true} showArrow={true} />,
+          header: () => <Header title="Habilidades" />,
         }}
         name="ListSkills"
         component={ListSkills}
