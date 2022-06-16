@@ -8,14 +8,14 @@ const HeaderStyles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center',
         borderBottomWidth: 3,
-        borderColor: "#ED7C03"
+        borderColor: "#ED7C03",
+        position: 'relative',
     },
     title: {
         color: Color.Fonts.Primary,
         fontSize: 30,
         textTransform: 'capitalize',
         fontFamily: Fonts.Primary.BOLD,
-        marginHorizontal: "13%",
     },
     image: {
         flex: 1,
@@ -26,6 +26,14 @@ const HeaderStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
       },
+    alignLeft: {
+        position: 'absolute',
+        left: 65,
+    },
+    alignRight: {
+        position: 'absolute',
+        right: 65,
+    }
 });
 
 export default HeaderStyles;

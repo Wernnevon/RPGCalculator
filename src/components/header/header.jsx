@@ -18,7 +18,7 @@ export default Header = ({ title, showX, showArrow }) => {
     <View style={HeaderStyles.container}>
       <ImageBackground source={Image} style={HeaderStyles.image}>
       {showArrow ? (
-        <BorderlessButton onPress={navigation.goBack}>
+        <BorderlessButton style={HeaderStyles.alignLeft} onPress={navigation.goBack}>
           <Feather name="arrow-left" size={24} color={Color.Fonts.Primary}></Feather>
         </BorderlessButton>
       ) : (
@@ -27,7 +27,7 @@ export default Header = ({ title, showX, showArrow }) => {
       <Text style={HeaderStyles.title}> {title} </Text>
 
       {showX ? (
-        <BorderlessButton onPress={handlerGoToAppHomepage}>
+        <BorderlessButton style={HeaderStyles.alignRight} onPress={handlerGoToAppHomepage}>
           <Feather name="x" size={24} color={Color.Fonts.Primary}></Feather>
         </BorderlessButton>
       ) : (

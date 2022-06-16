@@ -5,7 +5,6 @@ import Colors from "../../DesignPatterns/colors";
 
 import { Play } from "../../components/skill";
 import Styles from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ModalCustom = ({ show, handleClose, tecnica }) => {
   const [atribute, setAtribute] = useState(0);
@@ -16,9 +15,9 @@ const ModalCustom = ({ show, handleClose, tecnica }) => {
 
   const roll = () => {
     let { total, dices } = Play(
-      parseInt(atribute),
-      parseInt(numDice),
-      parseInt(bonus)
+      parseInt(tecnica.atribute),
+      parseInt(tecnica.numDice),
+      parseInt(tecnica.bonus)
     );
     setTotal(total);
     setDices(dices);
@@ -44,35 +43,7 @@ const ModalCustom = ({ show, handleClose, tecnica }) => {
             style={Styles.modalView}
             onTouchStart={(e) => e.stopPropagation()}
           >
-            <Text style={Styles.modalText}>{tecnica}</Text>
-            {!total && (
-              <View style={Styles.inputContainer}>
-                <View style={Styles.inputContainerItem}>
-                  <Text style={Styles.textInput}>Atributo</Text>
-                  <TextInput
-                    onChangeText={setAtribute}
-                    keyboardType="number-pad"
-                    style={Styles.input}
-                  />
-                </View>
-                <View style={Styles.inputContainerItem}>
-                  <Text style={Styles.textInput}>Dados</Text>
-                  <TextInput
-                    onChangeText={setNumDice}
-                    keyboardType="number-pad"
-                    style={Styles.input}
-                  />
-                </View>
-                <View style={Styles.inputContainerItem}>
-                  <Text style={Styles.textInput}>Bonus</Text>
-                  <TextInput
-                    onChangeText={setBonus}
-                    keyboardType="number-pad"
-                    style={Styles.input}
-                  />
-                </View>
-              </View>
-            )}
+            <Text style={Styles.modalText}>{tecnica.name}</Text>
             <Pressable style={Styles.rollButton} onPress={roll}>
               <FontAwesome5
                 style={{ elevation: 2 }}
@@ -81,7 +52,7 @@ const ModalCustom = ({ show, handleClose, tecnica }) => {
                 color={Colors.Backgrounds.White}
               />
             </Pressable>
-            {total && (atribute > 0 || bonus > 0) && (
+            {total && tecnica.bonus>0 && (
               <View style={Styles.diceContainer}>
                 <Text style={Styles.modalText}>Resultado</Text>
                 <Text style={Styles.resultText}>{total}</Text>

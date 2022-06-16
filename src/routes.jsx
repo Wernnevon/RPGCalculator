@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { View } from "react-native";
 
 import Header from "./components/header/header";
+import CreateSkill from "./Pages/CreateSkills";
 import ListSkills from "./Pages/ListSkills";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -25,11 +26,11 @@ export const Routes = () => (
         options={{
           headerShown: true,
           header: () => (
-            <Header title="Criar Habilidades" showX={false} showArrow={false} />
+            <Header title="Criar Habilidades" showX={true} showArrow={true} />
           ),
         }}
         name="CreateSkills"
-        component={Div}
+        component={CreateSkill}
       />
       <Screen
         options={{
