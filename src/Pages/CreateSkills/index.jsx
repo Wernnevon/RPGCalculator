@@ -5,7 +5,7 @@ import {
   Pressable,
   ImageBackground,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import image from "../../../assets/AppBG.png";
@@ -25,12 +25,6 @@ const CreateSkill = () => {
   const [bonus, setBonus] = useState(0);
   const {jutsus, loadJutsus} = useJutsus();
   const navigator = useNavigation()
-
-  // useEffect(() => {
-  //   AsyncStorage.getItem('jutsus').then(res =>{
-  //     setAll(res?JSON.parse(res):[]);
-  //   })
-  // },[])
   
   async function handleSave() {
     const jutsu = {

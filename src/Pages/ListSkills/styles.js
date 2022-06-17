@@ -44,6 +44,7 @@ const Styles = StyleSheet.create({
     borderColor: "#ED7C03",
     borderRadius: 10,
     width: "47%",
+    position: 'relative'
   },
   dice: {
     width: 32,
@@ -73,6 +74,13 @@ const Styles = StyleSheet.create({
     right: 10,
     zIndex: 99
   },
+  removeButton:{
+    borderWidth: 3,
+    marginTop: 10,
+    padding: 5,
+    borderRadius: 50,
+    borderColor: Color.Backgrounds.Close,
+  }
 });
 
 export default Styles;

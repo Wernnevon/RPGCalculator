@@ -2,28 +2,28 @@ import { Text, View, FlatList, ImageBackground, Image } from "react-native";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Styles from "./styles";
 import image from "../../../assets/AppBG.png";
 import ModalCustom from "../../components/modal";
-import { useNavigation } from "@react-navigation/native";
 import { useJutsus } from "../../components/Context/jutsusContext";
+import Color from "../../DesignPatterns/colors";
 
 const ListSkills = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [tecnique, setTecnique] = useState({});
-  const {jutsus} = useJutsus()
-
+  const { jutsus, loadJutsus } = useJutsus();
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   AsyncStorage.getItem("jutsus").then((res) => {
-  //     setJutsus(JSON.parse(res));
-  //   });
-  // }, []);
-  // console.log(justus)
   function handlerGoToCreateSkills() {
     navigation.navigate("CreateSkills");
+  }
+  async function handleRemoveJutsu(jutsuName){
+    let tec = jutsus.filter(jutsu => jutsu.name !== jutsuName);
+    await AsyncStorage.setItem('jutsus', JSON.stringify(tec));
+    loadJutsus();
   }
   const openModal = (jutsu) => {
     setTecnique(jutsu);
@@ -38,6 +38,9 @@ const ListSkills = () => {
           style={Styles.tecImage}
           source={{ uri: skill.image }}
         />
+        <TouchableOpacity style={Styles.removeButton} onPress={() => handleRemoveJutsu(skill.name)}>
+          <AntDesign name="delete" size={24} color={Color.Backgrounds.Close} />
+        </TouchableOpacity>
       </View>
     );
   }

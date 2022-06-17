@@ -2,7 +2,7 @@ export default {
     Fonts: {
         Primary: '#333',
         Secundary: "#EEE",
-        White: '#FFF'
+        White: '#FFF',
     },
     Backgrounds: {
         Primary: '#F2ECD8',
